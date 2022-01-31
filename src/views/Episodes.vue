@@ -2,7 +2,7 @@
   <img src="../assets/logo-episode.png" alt="logo-episode" class="logo" />
   <h1>Filters component</h1>
   <div class="cards-container">
-    <div v-for="episode in episodes" class="card" :key="episode.id">
+    <div v-for="episode in results" class="card" :key="episode.id">
       <div class="card__info">
         <p class="name">{{ episode.name }}</p>
         <p class="type">{{ episode.air_date }}</p>
@@ -10,27 +10,18 @@
       </div>
     </div>
   </div>
+  <button @click="loadMore">More</button>
 </template>
 
 <script>
-import { ref } from "vue";
+import getData from "../composables/getData";
+import { APISettings } from "../api/config";
 export default {
   setup() {
-    let episodes = ref([]);
-    const url = "https://rickandmortyapi.com/api/episode";
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw Error("Sorry, this page is not available");
-        const data = await response.json();
-        episodes.value = data.results;
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
+    const { episodesUrl } = APISettings;
+    const { results, info, fetchData, loadMore } = getData(episodesUrl);
     fetchData();
-
-    return { episodes };
+    return { results, info, loadMore };
   },
 };
 </script>

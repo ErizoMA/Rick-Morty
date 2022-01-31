@@ -2,7 +2,7 @@
   <img src="../assets/logo-character.png" alt="logo-character" class="logo" />
   <h1>Filters component</h1>
   <div class="cards-container">
-    <div v-for="character in characters" class="card" :key="character.id">
+    <div v-for="character in results" class="card" :key="character.id">
       <img class="card__img" :src="character.image" :alt="character.name" />
       <div class="card__info">
         <p class="name">{{ character.name }}</p>
@@ -14,34 +14,14 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import getData from "../composables/getData";
+import { APISettings } from "../api/config";
 export default {
   setup() {
-    const defaultUrl = "https://rickandmortyapi.com/api/character";
-    const characters = ref([]);
-    const info = ref([]);
-    const fetchData = async () => {
-      try {
-        const response = await fetch(defaultUrl);
-        if (!response.ok) throw Error("Sorry, this page is not available");
-        const data = await response.json();
-        const { results, info: information } = data;
-        characters.value = results;
-        info.value = information;
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
+    const { charactersUrl } = APISettings;
+    const { results, info, fetchData, loadMore } = getData(charactersUrl);
     fetchData();
-    const loadMore = async () => {
-      const { next: newUrl } = info.value;
-      const response = await fetch(newUrl);
-      const data = await response.json();
-      info.value = data.info;
-      characters.value = [...characters.value, ...data.results];
-    };
-
-    return { characters, info, loadMore };
+    return { results, info, loadMore };
   },
 };
 </script>

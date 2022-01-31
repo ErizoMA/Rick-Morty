@@ -2,34 +2,25 @@
   <img src="../assets/logo-location.png" alt="logo-location" class="logo" />
   <h1>Filters component</h1>
   <div class="cards-container">
-    <div v-for="location in locations" class="card" :key="location.id">
+    <div v-for="location in results" class="card" :key="location.id">
       <div class="card__info">
         <p class="name">{{ location.name }}</p>
         <p class="type">{{ location.type }}</p>
       </div>
     </div>
   </div>
+  <button @click="loadMore">More</button>
 </template>
 
 <script>
-import { ref } from "vue";
+import getData from "../composables/getData";
+import { APISettings } from "../api/config";
 export default {
   setup() {
-    let locations = ref([]);
-    const url = "https://rickandmortyapi.com/api/location";
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw Error("Sorry, this page is not available");
-        const data = await response.json();
-        locations.value = data.results;
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
+    const { locationsUrl } = APISettings;
+    const { results, info, fetchData, loadMore } = getData(locationsUrl);
     fetchData();
-
-    return { locations };
+    return { results, info, loadMore };
   },
 };
 </script>
