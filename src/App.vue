@@ -1,9 +1,13 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <img src="./assets/logo-black.png" alt="logo" />
+    <div class="navbar">
+      <router-link to="/">Characters</router-link>
+      <router-link to="/locations">Locations</router-link>
+      <router-link to="/episodes">Episodes</router-link>
+    </div>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
@@ -16,15 +20,24 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 6px 210px;
+  display: flex;
+  justify-content: space-between;
 }
 
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.navbar {
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 </style>
