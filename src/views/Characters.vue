@@ -10,27 +10,38 @@
       </div>
     </div>
   </div>
+  <button @click="loadMore">More</button>
 </template>
 
 <script>
 import { ref } from "vue";
 export default {
   setup() {
-    let characters = ref([]);
-    const url = "https://rickandmortyapi.com/api/character";
+    const defaultUrl = "https://rickandmortyapi.com/api/character";
+    const characters = ref([]);
+    const info = ref([]);
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(defaultUrl);
         if (!response.ok) throw Error("Sorry, this page is not available");
         const data = await response.json();
-        characters.value = data.results;
+        const { results, info: information } = data;
+        characters.value = results;
+        info.value = information;
       } catch (error) {
         console.error(error.message);
       }
     };
     fetchData();
+    const loadMore = async () => {
+      const { next: newUrl } = info.value;
+      const response = await fetch(newUrl);
+      const data = await response.json();
+      info.value = data.info;
+      characters.value = [...characters.value, ...data.results];
+    };
 
-    return { characters };
+    return { characters, info, loadMore };
   },
 };
 </script>
