@@ -9,7 +9,7 @@
       </div>
     </div>
   </div>
-  <button @click="loadMore">More</button>
+  <button @click="loadMore" class="more-button">load more</button>
 </template>
 
 <script>

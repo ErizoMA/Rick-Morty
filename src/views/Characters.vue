@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  <button @click="loadMore">More</button>
+  <button @click="loadMore" class="more-button">load More</button>
 </template>
 
 <script>
@@ -51,5 +51,19 @@ export default {
 }
 .card__info {
   padding: 16px 12px;
+}
+.more-button {
+  background: #f2f9fe;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2), 0px 1px 18px rgba(0, 0, 0, 0.12),
+    0px 6px 10px rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+  padding: 10px 32px;
+  color: #2196f3;
+  font-weight: bold;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 </style>
