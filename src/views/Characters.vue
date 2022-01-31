@@ -2,46 +2,37 @@
   <img src="../assets/logo-chr.png" alt="logo-characters" class="logo" />
   <h1>Filters component</h1>
   <div class="cards-container">
-    <div class="card">
-      <img class="card__img" src="" alt="" />
+    <div v-for="character in characters" class="card" :key="character.id">
+      <img class="card__img" :src="character.image" :alt="character.name" />
       <div class="card__info">
-        <p class="name">Rick Sanchez</p>
-        <p class="type">Human</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card__img" src="" alt="" />
-      <div class="card__info">
-        <p class="name">Rick Sanchez</p>
-        <p class="type">Human</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card__img" src="" alt="" />
-      <div class="card__info">
-        <p class="name">Rick Sanchez</p>
-        <p class="type">Human</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card__img" src="" alt="" />
-      <div class="card__info">
-        <p class="name">Rick Sanchez</p>
-        <p class="type">Human</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card__img" src="" alt="" />
-      <div class="card__info">
-        <p class="name">Rick Sanchez</p>
-        <p class="type">Human</p>
+        <p class="name">{{ character.name }}</p>
+        <p class="type">{{ character.species }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+export default {
+  setup() {
+    let characters = ref([]);
+    const url = "https://rickandmortyapi.com/api/character";
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw Error("Sorry, this page is not available");
+        const data = await response.json();
+        characters.value = data.results;
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+    fetchData();
+
+    return { characters };
+  },
+};
 </script>
 
 <style scoped>
@@ -51,7 +42,6 @@ export default {};
 }
 .cards-container {
   max-width: 1020px;
-  background-color: rgb(247, 240, 240);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -67,6 +57,7 @@ export default {};
 .card__img {
   width: 100%;
   height: 168px;
+  object-fit: cover;
 }
 .card__info {
   padding: 16px 12px;
