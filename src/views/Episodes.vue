@@ -1,16 +1,18 @@
 <template>
-  <img src="../assets/logo-episode.png" alt="logo-episode" class="logo" />
-  <h1>Filters component</h1>
-  <div class="cards-container">
-    <div v-for="episode in results" class="card" :key="episode.id">
-      <div class="card__info">
-        <p class="name">{{ episode.name }}</p>
-        <p class="type">{{ episode.air_date }}</p>
-        <p class="type">{{ episode.episode }}</p>
+  <div class="container">
+    <img src="../assets/logo-episode.png" alt="logo-episode" class="logo" />
+    <h1>Filters component</h1>
+    <div class="cards-container">
+      <div v-for="episode in results" class="card" :key="episode.id">
+        <div class="card__info">
+          <p class="name">{{ episode.name }}</p>
+          <p class="type">{{ episode.air_date }}</p>
+          <p class="type">{{ episode.episode }}</p>
+        </div>
       </div>
     </div>
+    <button @click="loadMore" class="more-button">load more</button>
   </div>
-  <button @click="loadMore" class="more-button">load more</button>
 </template>
 
 <script>

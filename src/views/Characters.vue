@@ -1,16 +1,22 @@
 <template>
-  <img src="../assets/logo-character.png" alt="logo-character" class="logo" />
-  <h1>Filters component</h1>
-  <div class="cards-container">
-    <div v-for="character in results" class="card" :key="character.id">
-      <img class="card__img" :src="character.image" :alt="character.name" />
-      <div class="card__info">
-        <p class="name">{{ character.name }}</p>
-        <p class="type">{{ character.species }}</p>
+  <div class="container">
+    <img src="../assets/logo-character.png" alt="logo-character" class="logo" />
+    <h1>Filters component</h1>
+    <div class="cards-container">
+      <div v-for="character in results" class="card" :key="character.id">
+        <router-link
+          :to="{ name: 'Character Details', params: { id: character.id } }"
+        >
+          <img class="card__img" :src="character.image" :alt="character.name" />
+          <div class="card__info">
+            <p class="name">{{ character.name }}</p>
+            <p class="type">{{ character.species }}</p>
+          </div>
+        </router-link>
       </div>
     </div>
+    <button @click="loadMore" class="more-button">load More</button>
   </div>
-  <button @click="loadMore" class="more-button">load More</button>
 </template>
 
 <script>
@@ -27,12 +33,20 @@ export default {
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .logo {
   height: 200px;
 }
-.cards-container {
+.container {
   max-width: 1020px;
   margin: 0 auto;
+}
+.cards-container {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
