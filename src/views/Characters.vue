@@ -1,5 +1,5 @@
 <template>
-  <img src="../assets/logo-chr.png" alt="logo-characters" class="logo" />
+  <img src="../assets/logo-character.png" alt="logo-character" class="logo" />
   <h1>Filters component</h1>
   <div class="cards-container">
     <div v-for="character in characters" class="card" :key="character.id">
@@ -35,9 +35,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .logo {
-  width: 600px;
   height: 200px;
 }
 .cards-container {
