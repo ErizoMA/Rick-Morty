@@ -44,7 +44,6 @@ export default {
   padding: 12px 16px;
 }
 .name {
-  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 30px;
@@ -52,8 +51,6 @@ export default {
   color: rgba(0, 0, 0, 0.87);
 }
 .species {
-  font-family: "Roboto", sans-serif;
-  font-weight: normal;
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0.25px;

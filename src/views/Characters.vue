@@ -3,7 +3,7 @@
     <img src="../assets/logo-character.png" alt="logo-character" class="logo" />
     <h1>Filters component</h1>
     <div class="cards-container">
-      <Card
+      <CharacterCard
         v-for="character in results"
         :key="character.id"
         :character="character"
@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import Card from "../components/Card.vue";
+import CharacterCard from "../components/CharacterCard.vue";
 import getData from "../composables/getData";
 import { APISettings } from "../api/config";
 export default {
-  components: { Card },
+  components: { CharacterCard },
   setup() {
     const { charactersUrl } = APISettings;
     const { results, info, fetchData, loadMore } = getData(charactersUrl);
