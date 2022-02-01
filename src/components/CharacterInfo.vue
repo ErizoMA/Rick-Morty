@@ -64,7 +64,7 @@ export default {
   grid-template-columns: repeat(1 1fr);
 }
 .information__item {
-  padding: 9px 16px;
+  padding: 9px 16px 0px 16px;
   text-align: left;
 }
 .information__item h2 {
