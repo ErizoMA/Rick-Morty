@@ -3,7 +3,8 @@ import Characters from "../views/Characters.vue";
 import Locations from "../views/Locations.vue";
 import Episodes from "../views/Episodes.vue";
 import CharacterDetails from "../views/CharacterDetails.vue";
-import EpisodesDetails from "../views/EpisodesDetails.vue";
+import EpisodeDetails from "../views/EpisodeDetails.vue";
+import LocationDetails from "../views/LocationDetails.vue";
 
 const routes = [
   {
@@ -34,7 +35,13 @@ const routes = [
   {
     path: "/episodes/:id",
     name: "Episode Details",
-    component: EpisodesDetails,
+    component: EpisodeDetails,
+    props: true,
+  },
+  {
+    path: "/locations/:id",
+    name: "Location Details",
+    component: LocationDetails,
     props: true,
   },
 ];

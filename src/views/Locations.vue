@@ -4,10 +4,14 @@
     <h1>Filters component</h1>
     <div class="cards-container">
       <div v-for="location in results" class="card" :key="location.id">
-        <div class="card__info">
-          <p class="name">{{ location.name }}</p>
-          <p class="type">{{ location.type }}</p>
-        </div>
+        <router-link
+          :to="{ name: 'Location Details', params: { id: location.id } }"
+        >
+          <div class="card__info">
+            <p class="name">{{ location.name }}</p>
+            <p class="type">{{ location.type }}</p>
+          </div>
+        </router-link>
       </div>
     </div>
     <button @click="loadMore" class="more-button">load more</button>
