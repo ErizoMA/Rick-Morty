@@ -58,6 +58,10 @@ export default {
     0px 2px 4px rgba(0, 0, 0, 0.14);
   border-radius: 4px;
 }
+.card a {
+  text-decoration: inherit;
+  color: inherit;
+}
 .card__img {
   width: 100%;
   height: 168px;

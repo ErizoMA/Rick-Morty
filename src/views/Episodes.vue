@@ -4,11 +4,15 @@
     <h1>Filters component</h1>
     <div class="cards-container">
       <div v-for="episode in results" class="card" :key="episode.id">
-        <div class="card__info">
-          <p class="name">{{ episode.name }}</p>
-          <p class="type">{{ episode.air_date }}</p>
-          <p class="type">{{ episode.episode }}</p>
-        </div>
+        <router-link
+          :to="{ name: 'Episode Details', params: { id: episode.id } }"
+        >
+          <div class="card__info">
+            <p class="name">{{ episode.name }}</p>
+            <p class="type">{{ episode.air_date }}</p>
+            <p class="type">{{ episode.episode }}</p>
+          </div>
+        </router-link>
       </div>
     </div>
     <button @click="loadMore" class="more-button">load more</button>
