@@ -6,7 +6,7 @@
       <img class="card__img" :src="character.image" :alt="character.name" />
       <div class="card__info">
         <p class="name">{{ shortName }}</p>
-        <p class="type">{{ character.species }}</p>
+        <p class="species">{{ character.species }}</p>
       </div>
     </div>
   </router-link>
@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card {
   width: 240px;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12),
@@ -51,7 +51,7 @@ export default {
   text-align: left;
   color: rgba(0, 0, 0, 0.87);
 }
-.type {
+.species {
   font-family: "Roboto", sans-serif;
   font-weight: normal;
   font-size: 14px;
