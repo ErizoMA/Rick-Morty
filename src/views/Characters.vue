@@ -3,26 +3,22 @@
     <img src="../assets/logo-character.png" alt="logo-character" class="logo" />
     <h1>Filters component</h1>
     <div class="cards-container">
-      <div v-for="character in results" class="card" :key="character.id">
-        <router-link
-          :to="{ name: 'Character Details', params: { id: character.id } }"
-        >
-          <img class="card__img" :src="character.image" :alt="character.name" />
-          <div class="card__info">
-            <p class="name">{{ character.name }}</p>
-            <p class="type">{{ character.species }}</p>
-          </div>
-        </router-link>
-      </div>
+      <Card
+        v-for="character in results"
+        :key="character.id"
+        :character="character"
+      />
     </div>
     <button @click="loadMore" class="more-button">load More</button>
   </div>
 </template>
 
 <script>
+import Card from "../components/Card.vue";
 import getData from "../composables/getData";
 import { APISettings } from "../api/config";
 export default {
+  components: { Card },
   setup() {
     const { charactersUrl } = APISettings;
     const { results, info, fetchData, loadMore } = getData(charactersUrl);
@@ -52,24 +48,7 @@ export default {
   place-items: center;
   row-gap: 24px;
 }
-.card {
-  width: 240px;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12),
-    0px 2px 4px rgba(0, 0, 0, 0.14);
-  border-radius: 4px;
-}
-.card a {
-  text-decoration: inherit;
-  color: inherit;
-}
-.card__img {
-  width: 100%;
-  height: 168px;
-  object-fit: cover;
-}
-.card__info {
-  padding: 16px 12px;
-}
+
 .more-button {
   background: #f2f9fe;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2), 0px 1px 18px rgba(0, 0, 0, 0.12),
