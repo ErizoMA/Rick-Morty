@@ -27,18 +27,32 @@
         <p>{{ details.type || "Unknown" }}</p>
         <div class="line"></div>
       </div>
-      <div class="information__item">
-        <h2>Location</h2>
-        <p>{{ details.location.name }}</p>
-        <div class="line"></div>
-      </div>
+      <router-link
+        :to="{ name: 'Location Details', params: { id: locationId } }"
+      >
+        <div class="information__item pointer">
+          <h2>Location</h2>
+          <p>{{ details.location.name }}</p>
+          <div class="line"></div>
+          <img src="../assets/arrow.png" class="arrow" alt="arrow" />
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import { computed } from "vue";
+
 export default {
   props: ["details"],
+  setup(props) {
+    const locationId = computed(() => {
+      let locationUrl = props.details.location.url;
+      return locationUrl.split("/").pop();
+    });
+    return { locationId };
+  },
 };
 </script>
 
@@ -66,6 +80,7 @@ export default {
 .information__item {
   padding: 9px 16px 0px 16px;
   text-align: left;
+  position: relative;
 }
 .information__item h2 {
   font-weight: bold;
@@ -85,5 +100,13 @@ export default {
   width: 100%;
   border-bottom: 1px solid rgb(206, 206, 206);
   margin-top: 12px;
+}
+.pointer {
+  cursor: pointer;
+}
+.arrow {
+  position: absolute;
+  right: 10%;
+  top: calc(50% - 24px / 2);
 }
 </style>

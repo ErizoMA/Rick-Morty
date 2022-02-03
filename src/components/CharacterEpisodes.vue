@@ -2,11 +2,16 @@
   <div v-if="episodes" class="episodes">
     <p class="episodes__title">Episodes</p>
     <div v-if="arrayData" class="episodes__list">
-      <div v-for="episode in arrayData" class="episode" :key="episode">
-        <h2>{{ episode.episode }}</h2>
-        <h3>{{ episode.name }}</h3>
-        <p>{{ episode.air_date }}</p>
-        <div class="line"></div>
+      <div v-for="episode in arrayData" class="episode" :key="episode.id">
+        <router-link
+          :to="{ name: 'Episode Details', params: { id: episode.id } }"
+        >
+          <h2>{{ episode.episode }}</h2>
+          <h3>{{ episode.name }}</h3>
+          <p>{{ episode.air_date }}</p>
+          <div class="line"></div>
+          <img src="../assets/arrow.png" class="arrow" alt="arrow" />
+        </router-link>
       </div>
     </div>
   </div>
@@ -45,6 +50,8 @@ export default {
 .episode {
   padding: 10px 16px 0 16px;
   text-align: left;
+  position: relative;
+  cursor: pointer;
 }
 
 .episode h2 {
@@ -76,5 +83,10 @@ export default {
   width: 100%;
   border-bottom: 1px solid rgb(206, 206, 206);
   margin-top: 12px;
+}
+.arrow {
+  position: absolute;
+  right: 10%;
+  top: calc(50% - 24px / 2);
 }
 </style>
