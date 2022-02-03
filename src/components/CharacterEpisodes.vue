@@ -1,8 +1,8 @@
 <template>
   <div class="episodes">
     <p class="episodes__title">Episodes</p>
-    <div v-if="characterEpisodes" class="episodes__list">
-      <div v-for="episode in characterEpisodes" class="episode" :key="episode">
+    <div v-if="arrayData" class="episodes__list">
+      <div v-for="episode in arrayData" class="episode" :key="episode">
         <h2>{{ episode.episode }}</h2>
         <h3>{{ episode.name }}</h3>
         <p>{{ episode.air_date }}</p>
@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import getCharacterEpisodes from "../composables/getCharacterEpisodes";
+import getAllResults from "../composables/getAllResults";
 export default {
   props: ["episodes"],
   setup(props) {
-    const { fetchEpisodes, characterEpisodes } = getCharacterEpisodes(props);
-    fetchEpisodes();
-    return { characterEpisodes };
+    const { fetchArrayUrls, arrayData } = getAllResults(props.episodes);
+    fetchArrayUrls();
+    return { arrayData };
   },
 };
 </script>
