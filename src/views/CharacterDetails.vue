@@ -1,10 +1,10 @@
 <template>
-  <div v-if="details" class="container">
+  <div class="container" v-if="details">
     <img :src="details.image" :alt="details.name" class="character-img" />
     <h1 class="character-name">{{ details.name }}</h1>
     <div class="character-details">
       <CharacterInfo :details="details" />
-      <CharacterEpisodes :episodes="details.episode" />
+      <CharacterEpisodes v-if="details" :episodes="details.episode" />
     </div>
   </div>
 </template>

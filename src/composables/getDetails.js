@@ -1,7 +1,7 @@
 import { ref } from "vue";
 
 const getDetails = (props, url) => {
-  const details = ref({});
+  const details = ref(null);
   const fetchData = async () => {
     try {
       const response = await fetch(url + props.id);

@@ -1,5 +1,5 @@
 <template>
-  <div class="episodes">
+  <div v-if="episodes" class="episodes">
     <p class="episodes__title">Episodes</p>
     <div v-if="arrayData" class="episodes__list">
       <div v-for="episode in arrayData" class="episode" :key="episode">
