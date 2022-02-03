@@ -6,6 +6,12 @@
       <CharacterInfo :details="details" />
       <CharacterEpisodes v-if="details" :episodes="details.episode" />
     </div>
+    <img
+      class="back-img"
+      src="../assets/go-back.png"
+      alt="back"
+      @click="goBack"
+    />
   </div>
 </template>
 
@@ -14,14 +20,19 @@ import CharacterInfo from "../components/CharacterInfo.vue";
 import CharacterEpisodes from "../components/CharacterEpisodes.vue";
 import { APISettings } from "../api/config";
 import getDetails from "../composables/getDetails";
+import { useRouter } from "vue-router";
 export default {
   props: ["id"],
   components: { CharacterInfo, CharacterEpisodes },
   setup(props) {
+    const router = useRouter();
+    const goBack = () => {
+      router.go(-1);
+    };
     const { charactersUrl } = APISettings;
     const { details, fetchData } = getDetails(props, charactersUrl);
     fetchData();
-    return { details };
+    return { details, goBack };
   },
 };
 </script>
@@ -42,5 +53,11 @@ export default {
 .character-details {
   width: 100%;
   display: flex;
+}
+.back-img {
+  position: absolute;
+  left: 209px;
+  top: 102px;
+  cursor: pointer;
 }
 </style>

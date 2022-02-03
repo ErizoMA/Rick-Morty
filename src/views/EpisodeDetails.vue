@@ -13,6 +13,12 @@
     </div>
     <p class="subtitle">Cast</p>
     <CardsContainer v-if="details" :residents="details.characters" />
+    <img
+      class="back-img"
+      src="../assets/go-back.png"
+      alt="back"
+      @click="goBack"
+    />
   </div>
 </template>
 
@@ -20,15 +26,20 @@
 import { APISettings } from "../api/config";
 import getDetails from "../composables/getDetails";
 import CardsContainer from "../components/CardsContainer.vue";
+import { useRouter } from "vue-router";
 
 export default {
   props: ["id"],
   components: { CardsContainer },
   setup(props) {
+    const router = useRouter();
+    const goBack = () => {
+      router.go(-1);
+    };
     const { episodesUrl } = APISettings;
     const { details, fetchData } = getDetails(props, episodesUrl);
     fetchData();
-    return { details };
+    return { details, goBack };
   },
 };
 </script>
@@ -76,5 +87,11 @@ export default {
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
   row-gap: 24px;
+}
+.back-img {
+  position: absolute;
+  left: 209px;
+  top: 102px;
+  cursor: pointer;
 }
 </style>
