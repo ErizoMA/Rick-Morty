@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <img src="../assets/logo-character.png" alt="logo-character" class="logo" />
-    <h1>Filters component</h1>
+    <img src="../assets/characterLogo.svg" alt="logo-character" class="logo" />
+    <CharacterSearchBar :query="query" />
     <div class="cards-container">
       <CharacterCard
         v-for="character in results"
@@ -15,15 +15,24 @@
 
 <script>
 import CharacterCard from "../components/CharacterCard.vue";
+import CharacterSearchBar from "../components/CharacterSearchBar.vue";
 import getData from "../composables/getData";
 import { APISettings } from "../api/config";
+import { watchEffect } from "vue";
+import getFilterResults from "../composables/getFilterResults";
 export default {
-  components: { CharacterCard },
+  components: { CharacterCard, CharacterSearchBar },
   setup() {
     const { charactersUrl } = APISettings;
     const { results, info, fetchData, loadMore } = getData(charactersUrl);
+    const { fetchQuery, query } = getFilterResults(
+      charactersUrl,
+      results,
+      info
+    );
+    watchEffect(fetchQuery);
     fetchData();
-    return { results, info, loadMore };
+    return { results, info, loadMore, query };
   },
 };
 </script>
@@ -31,11 +40,14 @@ export default {
 <style>
 .logo {
   height: 200px;
+  width: auto;
 }
 .container {
   max-width: 1020px;
   margin: 26px auto 0;
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .cards-container {
   width: 100%;

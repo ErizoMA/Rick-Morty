@@ -10,6 +10,7 @@ const getData = (url) => {
       const data = await response.json();
       results.value = data.results;
       info.value = data.info;
+      console.log("fetch data");
     } catch (error) {
       console.error(error.message);
     }
