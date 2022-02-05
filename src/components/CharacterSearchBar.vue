@@ -4,7 +4,7 @@
       type="text"
       v-model="query.name"
       class="input"
-      placeholder="Filter by name"
+      placeholder="Filter by name ..."
     />
 
     <select v-model="query.status" class="select">

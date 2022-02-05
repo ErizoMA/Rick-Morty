@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <img src="../assets/locationLogo.svg" alt="logo-location" class="logo" />
-    <h1>Filters component</h1>
+    <SearchBar :query="query" />
+
     <div class="cards-container">
       <LocationCard
         v-for="location in results"
@@ -14,16 +15,23 @@
 </template>
 
 <script>
+import SearchBar from "../components/SearchBar.vue";
 import LocationCard from "../components/LocationCard.vue";
 import getData from "../composables/getData";
 import { APISettings } from "../api/config";
+import { watchEffect } from "vue";
+import getFilterResults from "../composables/getFilterResults";
+
 export default {
-  components: { LocationCard },
+  components: { LocationCard, SearchBar },
   setup() {
     const { locationsUrl } = APISettings;
     const { results, info, fetchData, loadMore } = getData(locationsUrl);
+    const { fetchQuery, query } = getFilterResults(locationsUrl, results, info);
+
     fetchData();
-    return { results, info, loadMore };
+    watchEffect(fetchQuery);
+    return { results, info, loadMore, query };
   },
 };
 </script>
