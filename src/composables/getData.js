@@ -10,7 +10,6 @@ const getData = (url) => {
       const data = await response.json();
       results.value = data.results;
       info.value = data.info;
-      console.log("fetch data");
     } catch (error) {
       console.error(error.message);
     }
@@ -21,7 +20,6 @@ const getData = (url) => {
     if (newUrl === null || newUrl === undefined) return;
     try {
       const response = await fetch(newUrl);
-      console.log("fetch more");
       if (!response.ok) throw Error("No more content");
       const data = await response.json();
       info.value = data.info;
