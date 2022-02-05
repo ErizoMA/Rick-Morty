@@ -9,7 +9,7 @@
         :location="location"
       />
     </div>
-    <div v-if="results.length === 0" class="not-found">
+    <div v-if="error" class="not-found">
       Sorry, we couldn't find any results
     </div>
 
@@ -30,11 +30,15 @@ export default {
   setup() {
     const { locationsUrl } = APISettings;
     const { results, info, fetchData, loadMore } = getData(locationsUrl);
-    const { fetchQuery, query } = getFilterResults(locationsUrl, results, info);
+    const { fetchQuery, query, error } = getFilterResults(
+      locationsUrl,
+      results,
+      info
+    );
 
     fetchData();
     watchEffect(fetchQuery);
-    return { results, info, loadMore, query };
+    return { results, info, loadMore, query, error };
   },
 };
 </script>

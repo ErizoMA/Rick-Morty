@@ -9,7 +9,7 @@
         :character="character"
       />
     </div>
-    <div v-if="results.length === 0" class="not-found">
+    <div v-if="error" class="not-found">
       Sorry, we couldn't find any results
     </div>
     <button @click="loadMore" class="more-button">Load More</button>
@@ -28,14 +28,14 @@ export default {
   setup() {
     const { charactersUrl } = APISettings;
     const { results, info, fetchData, loadMore } = getData(charactersUrl);
-    const { fetchQuery, query } = getFilterResults(
+    const { fetchQuery, query, error } = getFilterResults(
       charactersUrl,
       results,
       info
     );
     fetchData();
     watchEffect(fetchQuery);
-    return { results, info, loadMore, query };
+    return { results, info, loadMore, query, error };
   },
 };
 </script>

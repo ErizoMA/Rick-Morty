@@ -1,6 +1,7 @@
 import { ref } from "vue";
 const getFilterResults = (url, results, info) => {
   const query = ref({ name: "", status: "", gender: "" });
+  const error = ref(false);
   const fetchQuery = async () => {
     try {
       const response = await fetch(
@@ -16,13 +17,14 @@ const getFilterResults = (url, results, info) => {
       const data = await response.json();
       results.value = data.results;
       info.value = data.info;
-    } catch (error) {
+    } catch (e) {
+      error.value = true;
       results.value = [];
       info.value = {};
-      console.error(error.message);
+      console.error(e.message);
     }
   };
-  return { fetchQuery, query, results };
+  return { fetchQuery, query, results, error };
 };
 
 export default getFilterResults;

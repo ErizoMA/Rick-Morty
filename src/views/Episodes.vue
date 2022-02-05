@@ -9,7 +9,7 @@
         :episode="episode"
       />
     </div>
-    <div v-if="results.length === 0" class="not-found">
+    <div v-if="error" class="not-found">
       Sorry, we couldn't find any results
     </div>
 
@@ -29,10 +29,14 @@ export default {
   setup() {
     const { episodesUrl } = APISettings;
     const { results, info, fetchData, loadMore } = getData(episodesUrl);
-    const { fetchQuery, query } = getFilterResults(episodesUrl, results, info);
+    const { fetchQuery, query, error } = getFilterResults(
+      episodesUrl,
+      results,
+      info
+    );
     fetchData();
     watchEffect(fetchQuery);
-    return { results, info, loadMore, query };
+    return { results, info, loadMore, query, error };
   },
 };
 </script>
