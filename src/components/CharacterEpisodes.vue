@@ -10,7 +10,7 @@
           <h3>{{ episode.name }}</h3>
           <p>{{ episode.air_date }}</p>
           <div class="line"></div>
-          <img src="../assets/arrow.png" class="arrow" alt="arrow" />
+          <img src="../assets/arrow.svg" class="arrow" alt="arrow" />
         </router-link>
       </div>
     </div>

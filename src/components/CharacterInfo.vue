@@ -34,7 +34,7 @@
           <h2>Location</h2>
           <p>{{ details.location.name }}</p>
           <div class="line"></div>
-          <img src="../assets/arrow.png" class="arrow" alt="arrow" />
+          <img src="../assets/arrow.svg" class="arrow" alt="arrow" />
         </div>
       </router-link>
     </div>

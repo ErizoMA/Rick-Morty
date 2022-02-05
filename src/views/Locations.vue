@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img src="../assets/logo-location.png" alt="logo-location" class="logo" />
+    <img src="../assets/locationLogo.svg" alt="logo-location" class="logo" />
     <h1>Filters component</h1>
     <div class="cards-container">
       <LocationCard

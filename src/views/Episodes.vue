@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img src="../assets/logo-episode.png" alt="logo-episode" class="logo" />
+    <img src="../assets/episodesLogo.svg" alt="logo-episode" class="logo" />
     <h1>Filters component</h1>
     <div class="cards-container">
       <EpisodeCard

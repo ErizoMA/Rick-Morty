@@ -15,7 +15,7 @@
     <CardsContainer v-if="details" :residents="details.characters" />
     <img
       class="back-img"
-      src="../assets/go-back.png"
+      src="../assets/goBack.svg"
       alt="back"
       @click="goBack"
     />
