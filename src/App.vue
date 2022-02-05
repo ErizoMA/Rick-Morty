@@ -10,7 +10,15 @@
     </div>
   </div>
   <router-view />
+  <Footer />
 </template>
+<script>
+import Footer from "./components/Footer.vue";
+
+export default {
+  components: { Footer },
+};
+</script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
@@ -20,6 +28,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  padding-bottom: 70px;
+  position: relative;
 }
 #app {
   font-family: "Roboto", sans-serif;
@@ -35,10 +48,9 @@ a {
 
 #nav {
   display: flex;
-  max-width: 1020px;
   justify-content: space-between;
-  margin: 0 auto;
-  padding: 6px 0 6px 0;
+  padding: 6px 210px;
+  box-shadow: -2px 0px 8px 2px rgba(0, 0, 0, 0.1);
 }
 
 #nav a {

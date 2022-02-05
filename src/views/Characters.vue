@@ -34,7 +34,8 @@ export default {
 }
 .container {
   max-width: 1020px;
-  margin: 0 auto;
+  margin: 26px auto 0;
+  min-height: 100%;
 }
 .cards-container {
   width: 100%;
@@ -57,5 +58,6 @@ export default {
   cursor: pointer;
   font-size: 14px;
   letter-spacing: 1px;
+  margin: 30px auto;
 }
 </style>
