@@ -9,6 +9,10 @@
         :episode="episode"
       />
     </div>
+    <div v-if="results.length === 0" class="not-found">
+      Sorry, we couldn't find any results
+    </div>
+
     <button @click="loadMore" class="more-button">load more</button>
   </div>
 </template>
@@ -32,5 +36,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

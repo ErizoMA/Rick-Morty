@@ -12,6 +12,7 @@ const getFilterResults = (url, results, info) => {
           "&gender=" +
           query.value.gender
       );
+      console.log("query", response);
       if (!response.ok) throw Error("Not found");
       console.log("fetch query");
       const data = await response.json();
