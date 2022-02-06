@@ -1,5 +1,6 @@
 <template>
-  <div v-if="residents" class="cards-container">
+  <Loading v-if="loading" :loading="loading" />
+  <div v-else class="cards-container">
     <CharacterCard
       v-for="resident in arrayData"
       :key="resident.id"
@@ -11,14 +12,17 @@
 <script>
 import getAllResults from "../composables/getAllResults";
 import CharacterCard from "../components/CharacterCard.vue";
+import Loading from "../components/Loading.vue";
 
 export default {
   props: ["residents"],
-  components: { CharacterCard },
+  components: { CharacterCard, Loading },
   setup(props) {
-    const { fetchArrayUrls, arrayData } = getAllResults(props.residents);
+    const { fetchArrayUrls, arrayData, loading } = getAllResults(
+      props.residents
+    );
     fetchArrayUrls();
-    return { arrayData };
+    return { arrayData, loading };
   },
 };
 </script>

@@ -30,9 +30,9 @@ export default {
       router.go(-1);
     };
     const { charactersUrl } = APISettings;
-    const { details, fetchData } = getDetails(props, charactersUrl);
+    const { details, fetchData, loading } = getDetails(props, charactersUrl);
     fetchData();
-    return { details, goBack };
+    return { details, goBack, loading };
   },
 };
 </script>

@@ -4,6 +4,7 @@ const getFilterResults = (url, results, info) => {
   const error = ref(false);
   const fetchQuery = async () => {
     try {
+      error.value = false;
       const response = await fetch(
         url +
           "?name=" +
@@ -15,6 +16,7 @@ const getFilterResults = (url, results, info) => {
       );
       if (!response.ok) throw Error("Not found");
       const data = await response.json();
+
       results.value = data.results;
       info.value = data.info;
     } catch (e) {

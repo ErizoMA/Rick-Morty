@@ -28,6 +28,7 @@
         <div class="line"></div>
       </div>
       <router-link
+        v-if="locationId"
         :to="{ name: 'Location Details', params: { id: locationId } }"
       >
         <div class="information__item pointer">
