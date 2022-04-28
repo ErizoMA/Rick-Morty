@@ -1,4 +1,7 @@
-# rick-morty
+# Rick&Morty
+
+## Demo
+![image](https://res.cloudinary.com/djzj5tbgw/image/upload/v1651110348/rick-morty_uicltt.gif)
 
 ## Project setup
 ```
@@ -14,6 +17,5 @@ npm run serve
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Design
+Design : [Figma](https://www.figma.com/community/file/979477099633946456/Rick-and-Morty-(web-responsive))
